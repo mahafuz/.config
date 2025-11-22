@@ -1,0 +1,11 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "group": "build",
+      "label": "PHP 5.4 Short Array Syntax Converter",
+      "type": "shell",
+      "command": "/opt/homebrew/opt/php@7.4/bin/php /Users/mahafuz/.vscode/convert.php -w ${file}"
+    }
+  ]
+}

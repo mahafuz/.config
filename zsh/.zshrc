@@ -1,112 +1,182 @@
-# Run the commands from this file to configure your shell,
-# ln -s ~/.config/zsh/.zshrc ~/.zshrc
+# ========================================
+# Mahafuz's Zsh configuration - optimized
+# For macOS M1 / Homebrew
+# ========================================
 
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
-
-# Path to your Oh My Zsh installation.
+# Path to Oh My Zsh installation
 export ZSH="$HOME/.oh-my-zsh"
 
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time Oh My Zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="agnoster"
+# ======================
+# Theme
+# ======================
+ZSH_THEME="half-life"
 
-# Set list of themes to pick from when loading at random
-# Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in $ZSH/themes/
-# If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
+# ======================
+# Plugins
+# ======================
+plugins=(
+  aliases
+  encode64
+  web-search
+  copypath
+  copyfile
+  jsontools
+  command-not-found
+  fastfile
+  vscode
+  emoji
+  colored-man-pages
+)
 
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
-
-# Uncomment the following line to use hyphen-insensitive completion.
-# Case-sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
-
-# Uncomment one of the following lines to change the auto-update behavior
-# zstyle ':omz:update' mode disabled  # disable automatic updates
-# zstyle ':omz:update' mode auto      # update automatically without asking
-# zstyle ':omz:update' mode reminder  # just remind me to update when it's time
-
-# Uncomment the following line to change how often to auto-update (in days).
-# zstyle ':omz:update' frequency 13
-
-# Uncomment the following line if pasting URLs and other text is messed up.
-# DISABLE_MAGIC_FUNCTIONS="true"
-
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-# You can also set it to another string to have that shown instead of the default red dots.
-# e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
-# Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
-# COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# You can set one of the optional three formats:
-# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# or set a custom format using the strftime function format specifications,
-# see 'man strftime' for details.
-# HIST_STAMPS="mm/dd/yyyy"
-
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
-# Which plugins would you like to load?
-# Standard plugins can be found in $ZSH/plugins/
-# Custom plugins may be added to $ZSH_CUSTOM/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
-
+# Load Oh My Zsh
 source $ZSH/oh-my-zsh.sh
 
-# User configuration
+# ======================
+# PATH setup
+# ======================
+# Initial PATH entries in preferred order
+path_array=(
+  "$HOME/.local/bin"
+  "$HOME/.nvm/versions/node/v22.18.0/bin"
+  "/opt/homebrew/bin"
+  "/opt/homebrew/sbin"
+  "/usr/local/bin"
+  "/usr/bin"
+  "/bin"
+  "/usr/sbin"
+  "/sbin"
+  "$HOME/.lmstudio/bin"
+)
 
-# export MANPATH="/usr/local/man:$MANPATH"
+# Remove duplicates (Zsh array unique)
+typeset -U path_array
 
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+# Convert back to colon-separated string
+export PATH="${(j/:/)path_array}"
 
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='nvim'
-# fi
+# ======================
+# MANPATH setup
+# ======================
+# GNU coreutils man pages first
+export MANPATH="/opt/homebrew/opt/coreutils/libexec/gnuman:$MANPATH"
 
-# Compilation flags
-# export ARCHFLAGS="-arch $(uname -m)"
+# ======================
+# Completion setup
+# ======================
+if type brew &>/dev/null; then
+  FPATH="$(brew --prefix)/share/zsh-completions:$FPATH"
+  autoload -Uz compinit
+  compinit -C  # safe completions
+fi
 
-# Set personal aliases, overriding those provided by Oh My Zsh libs,
-# plugins, and themes. Aliases can be placed here, though Oh My Zsh
-# users are encouraged to define aliases within a top-level file in
-# the $ZSH_CUSTOM folder, with .zsh extension. Examples:
-# - $ZSH_CUSTOM/aliases.zsh
-# - $ZSH_CUSTOM/macos.zsh
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+# ======================
+# Starship prompt
+# ======================
+eval "$(starship init zsh)"
 
+# ======================
+# zsh-autosuggestions
+# ======================
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#ff00ff,bold,underline"
+source "$(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 
-# Export path to include user's local bin
-export PATH=/Users/mahafuz/.local/bin:/Users/mahafuz/.local/bin:/Users/mahafuz/.nvm/versions/node/v22.18.0/bin:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/homebrew/sbin:/opt/homebrew/bin:/Users/mahafuz/.nvm/versions/node/v22.18.0/bin:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/homebrew/sbin:/opt/homebrew/bin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/Library/Apple/usr/bin:/usr/local/go/bin:/opt/homebrew/bin:/usr/local/bin:/opt/homebrew/bin:/Users/mahafuz/.lmstudio/bin:/usr/local/bin:/opt/homebrew/bin:/Users/mahafuz/.lmstudio/bin
+# ======================
+# zsh-syntax-highlighting (load last)
+# ======================
+source "$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
+# ======================
+# The Fuck
+# ======================
+eval "$(thefuck --alias)"
+
+# ======================
+# Aliases
+# ======================
+alias cat="ccat"
+
+# Web search shortcuts
+alias ws="web_search"
+alias \?="google"
+alias \!\?="ws chatgpt"
+alias \?\?="ddg"
+
+# Fastfile plugin prefix
+fastfile_var_prefix='@'
+
+# Open ports
+alias show_open_ports="sudo lsof -i -n -P"
+alias open_ports="show_open_ports"
+
+# Public IP
+alias show_public_ip="curl -Ss icanhazip.com"
+alias public_ip="show_public_ip"
+alias copy_public_ip="show_public_ip | pbcopy"
+alias show_public_ip_v4="curl -Ss4 icanhazip.com/v4"
+alias public_ip_v4="show_public_ip_v4"
+alias copy_public_ip_v4="show_public_ip_v4 | pbcopy"
+alias show_public_ip_v6="curl -Ss6 icanhazip.com/v6"
+alias public_ip_v6="show_public_ip_v6"
+alias copy_public_ip_v6="show_public_ip_v6 | pbcopy"
+
+# VSCode plugin aliases are already provided by Oh My Zsh
+
+# Eza configuration
+if command -v eza &>/dev/null; then
+  alias l='eza --color=always --color-scale=all --color-scale-mode=gradient --icons=always --group-directories-first'
+  alias ll='eza --color=always --color-scale=all --color-scale-mode=gradient --icons=always --group-directories-first -l --git -h'
+  alias la='eza --color=always --color-scale=all --color-scale-mode=gradient --icons=always --group-directories-first -a'
+  alias lla='eza --color=always --color-scale=all --color-scale-mode=gradient --icons=always --group-directories-first -a -l --git -h'
+else
+  alias l='ls -CF'
+  alias la='ls -A'
+  alias ll='ls -alF'
+  alias lla='ls -la'
+fi
+
+# Battery status
+alias battery='pmset -g batt | egrep "([0-9]+\%).*" -o --colour=auto'
+
+# Base64 encode/decode clipboard (print + copy)
+alias encode_clipboard_base64='pbpaste | encode64 | tee >(pbcopy)'
+alias encode_clipboard='encode_clipboard_base64'
+alias base64_clipboard='encode_clipboard_base64'
+
+alias decode_clipboard_base64='pbpaste | decode64 | tee >(pbcopy)'
+alias decode_clipboard='decode_clipboard_base64'
+alias base64_clipboard_decode='decode_clipboard_base64'
+
+# ======================
+# Functions
+# ======================
+mkcd() {
+  if [ -z "$1" ]; then
+    echo "Enter a directory name"
+  elif [ -d "$1" ]; then
+    echo "\`$1' already exists"
+  else
+    mkdir "$1" && cd "$1"
+  fi
+}
+
+markdown2pdf() {
+  if [ -z "$1" ] || [ ! -f "$1" ]; then
+    echo "Provide an existing input markdown file"
+  elif [ "${1##*.}" != "md" ]; then
+    echo "Provided file is not a markdown file!"
+  else
+    pandoc "$1" -f markdown -t latex -s -o "${1%.*}.pdf"
+  fi
+}
+
+# ======================
+# User aliases for config editing
+# ======================
+alias zshconfig="vim ~/.zshrc"
+alias ohmyzsh="vim ~/.oh-my-zsh"
+alias zshrc="source ~/.zshrc"
+
+# ======================
+# Oh My Zsh defaults
+# ======================
+DISABLE_AUTO_TITLE="true"

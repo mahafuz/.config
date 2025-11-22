@@ -1,0 +1,10 @@
+gtk-*
+configstore
+.DS_Store
+phpmon
+raycast
+wireshark
+/net-commander
+.oh-my-zsh
+.wp-cli
+thefuck
