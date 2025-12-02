@@ -191,3 +191,11 @@ DISABLE_AUTO_TITLE="true"
 export PATH="$PATH:/Users/mahafuz/.lmstudio/bin"
 # End of LM Studio CLI section
 
+
+# ===============================
+# System Environment Variables
+# ===============================
+export VSCODE_HOMEBREW_PREFIX="/opt/homebrew"
+export VSCODE_PHP_PATH="${VSCODE_HOMEBREW_PREFIX}/bin/php"
+export VSCODE_PYTHON_PATH="${VSCODE_HOMEBREW_PREFIX}/bin/python3"
+

@@ -16,7 +16,7 @@
 	"workbench.settings.applyToAllProfiles": ["workbench.colorCustomizations"],
 
 	// Theme
-	"workbench.colorTheme": "Real IntelliJ Light",
+	"workbench.colorTheme": "macOS Classic Dark v2",
 	"workbench.iconTheme": "vscode-icons",
 
 	// Layout
@@ -357,7 +357,7 @@
 
 	// Snippets & Python
 	"reactSnippets.settings.languageScopes": "typescript,typescriptreact,javascript",
-	"python.defaultInterpreterPath": "/opt/homebrew/bin/python3",
+	"python.defaultInterpreterPath": "${env:VSCODE_PYTHON_PATH}",
 
 	// Chat
 	"chat.commandCenter.enabled": false,
@@ -386,8 +386,8 @@
 	],
 
 	// PHP
-	"phpsab.phpExecutablePath": "/opt/homebrew/bin/php",
-	"php.debug.executablePath": "/opt/homebrew/bin/php",
+	"phpsab.phpExecutablePath": "${env:VSCODE_PHP_PATH}",
+	"php.debug.executablePath": "${env:VSCODE_PHP_PATH}",
 	"html.format.templating": true,
 	"intelephense.phpdoc.useFullyQualifiedNames": true,
 	"php-docblocker.alignParams": true,
