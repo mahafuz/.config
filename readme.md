@@ -1,12 +1,5 @@
 # VSCode Configuration Guide
 
-## 👀 Demos
-<img width="1545" height="1136" alt="CleanShot 2025-12-02 at 23 31 03" src="https://github.com/user-attachments/assets/4ebae4dc-c793-4150-bd67-54b9bc0fb58f" />
-
-<img width="1523" height="1143" alt="CleanShot 2025-12-02 at 23 32 52" src="https://github.com/user-attachments/assets/26ac5602-19c3-4c01-bc69-75469b2e8aaf" />
-
-
-
 ## 🚀 Quick Start
 
 ### 1. Clone the Configuration
@@ -653,6 +646,15 @@ To enable dark mode:
     }
     ```
 3. Restart VSCode
+
+
+## 👀 Demos
+
+### Dark Theme (Min-Dark)
+<img width="1545" height="1136" alt="CleanShot 2025-12-02 at 23 31 03" src="https://github.com/user-attachments/assets/4ebae4dc-c793-4150-bd67-54b9bc0fb58f" />
+
+### Light Theme (Real IntelliJ Light)
+<img width="1523" height="1143" alt="CleanShot 2025-12-02 at 23 32 52" src="https://github.com/user-attachments/assets/26ac5602-19c3-4c01-bc69-75469b2e8aaf" />
 
 ---
 
