@@ -1,4 +1,5 @@
 // Place your key bindings in this file to override the defaults
+// Link(ln -s) this file to the /User/Application\ Support/Code/User
 [
 	// Useful keybindings set by default
 	// ctrl + => zoom in (whole editor)
