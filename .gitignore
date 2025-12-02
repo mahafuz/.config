@@ -9,5 +9,6 @@ gtk-*
 .wp-cli
 .oh-my-zsh
 .vscode/extensions
+.vscode/argv.json
 .vscode/cli
 .vscode/.gitignore.swp
