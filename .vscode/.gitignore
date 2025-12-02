@@ -1,0 +1,8 @@
+configstore/
+phpmon
+raycast
+thefuck
+.DS_Store
+jgit
+.vscode/argv.json
+.vscode/.gitignore.swp

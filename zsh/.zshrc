@@ -20,7 +20,6 @@ plugins=(
   web-search
   copypath
   copyfile
-  jsontools
   command-not-found
   fastfile
   vscode
@@ -61,6 +60,11 @@ export PATH="${(j/:/)path_array}"
 export MANPATH="/opt/homebrew/opt/coreutils/libexec/gnuman:$MANPATH"
 
 # ======================
+# AUTO COMPLETE setup
+# ======================
+source $(brew --prefix)/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+
+# ======================
 # Completion setup
 # ======================
 if type brew &>/dev/null; then
@@ -94,12 +98,14 @@ eval "$(thefuck --alias)"
 # Aliases
 # ======================
 alias cat="ccat"
+alias python="python3"
+alias pip="pip3"
 
 # Web search shortcuts
 alias ws="web_search"
 alias \?="google"
 alias \!\?="ws chatgpt"
-alias \?\?="ddg"
+alias \?\?="reddit"
 
 # Fastfile plugin prefix
 fastfile_var_prefix='@'
@@ -180,3 +186,8 @@ alias zshrc="source ~/.zshrc"
 # Oh My Zsh defaults
 # ======================
 DISABLE_AUTO_TITLE="true"
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/mahafuz/.lmstudio/bin"
+# End of LM Studio CLI section
+
